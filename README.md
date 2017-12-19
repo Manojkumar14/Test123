@@ -26,3 +26,30 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Observe the object what you get and then modify the Html code.(Remember this suggestion)
+## HTML File
+<table>
+  <thead>
+    <th class="col-sm-3">ID</th>
+    <th class="col-sm-3">NAME</th>
+    <th class="col-sm-3">Avatar</th>
+  </thead>
+  <tr *ngFor="let details of fieldsArray">
+    <td class="col-sm-3">{{details.id}}</td>
+    <td class="col-sm-3">{{details.first_name + " " + details.first_name}}</td>
+    <td class="col-sm-3"><img src="{{details.avatar}}"></td>
+  </tr>
+</table>
+## get-data.component.ts file
+getdata(){
+  let errMessage: any = [];
+  this.getservice.gettingfunction()
+  .subscribe(
+    (locationFields) => {
+      this.fieldsArray = locationFields.data;
+      console.log(this.fieldsArray);
+    },
+    errorMsg => errMessage = <any>errorMsg
+  );
+}
